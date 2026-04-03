@@ -13,11 +13,8 @@
         "strictFunctionTypes": true,
         "strictPropertyInitialization": true,
         "noImplicitThis": true,
-        "alwaysStrict": true,
-        "baseUrl": "./",
-        "paths": {
-            "*": ["*"]
-        }
+        "alwaysStrict": true
+    
     },
     "include": ["src/**/*", "test/**/*", "config/**/*"],
     "exclude": ["node_modules", "dist"]
