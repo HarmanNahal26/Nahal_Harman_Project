@@ -11,16 +11,20 @@
     "license": "ISC",
     "description": "",
     "dependencies": {
-        "express": "^5.1.0"
+        "cors": "^2.8.6",
+        "express": "^5.1.0",
+        "helmet": "^8.1.0"
     },
     "devDependencies": {
+        "@types/cors": "^2.8.19",
         "@types/express": "^5.0.2",
+        "@types/helmet": "^0.0.48",
+        "@types/jest": "^29.5.14",
         "@types/node": "^22.15.24",
-        "ts-node": "^10.9.2",
-        "typescript": "^5.8.3",
         "jest": "^30.0.0",
         "ts-jest": "^29.2.5",
-        "@types/jest": "^29.5.14"
+        "ts-node": "^10.9.2",
+        "typescript": "^5.8.3"
     },
     "jest": {
         "preset": "ts-jest",
@@ -34,5 +38,16 @@
         "transform": {
             "^.+\\.ts$": "ts-jest"
         }
-    }
+    },
+    "directories": {
+        "test": "test"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/HarmanNahal26/Nahal_Harman_Project.git"
+    },
+    "bugs": {
+        "url": "https://github.com/HarmanNahal26/Nahal_Harman_Project/issues"
+    },
+    "homepage": "https://github.com/HarmanNahal26/Nahal_Harman_Project#readme"
 }
