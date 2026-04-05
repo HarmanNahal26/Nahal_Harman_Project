@@ -27,3 +27,12 @@ export const createExpense = (req: Request, res: Response): void => {
 export const getExpenses = (req: Request, res: Response): void => {
   res.json(expenses);
 };
+
+export const getSummary = (req: Request, res: Response): void => {
+  const total = expenses.reduce((sum, e) => sum + (e.amount || 0), 0);
+
+  res.json({
+    total,
+    count: expenses.length
+  });
+};
