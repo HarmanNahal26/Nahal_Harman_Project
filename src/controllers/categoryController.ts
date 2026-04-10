@@ -4,7 +4,7 @@ let categories: any[] = [];
 
 export const createCategory = (req: Request, res: Response) => {
   const category = {
-    id: Date.now(),
+    id: (categories.length + 1).toString(),
     ...req.body
   };
 
