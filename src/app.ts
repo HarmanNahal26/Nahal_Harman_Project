@@ -3,6 +3,7 @@ import cors from "cors";
 import helmet from "helmet";
 import expenseRoutes from "./routes/expenseRoutes";
 import categoryRoutes from "./routes/categoryRoutes";
+import budgetRoutes from "./routes/budgetRoutes";
 import swaggerUi from "swagger-ui-express";         
 import swaggerJsdoc from "swagger-jsdoc";            
 
@@ -28,6 +29,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
 app.use("/expenses", expenseRoutes);
 app.use("/categories", categoryRoutes);
+app.use("/budgets", budgetRoutes);
 
 
 app.get("/", (req, res) => {
