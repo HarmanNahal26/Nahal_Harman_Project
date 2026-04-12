@@ -1,17 +1,31 @@
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
+import rateLimit from "express-rate-limit";
+
 import expenseRoutes from "./routes/expenseRoutes";
 import categoryRoutes from "./routes/categoryRoutes";
 import budgetRoutes from "./routes/budgetRoutes";
-import swaggerUi from "swagger-ui-express";         
-import swaggerJsdoc from "swagger-jsdoc";            
+
+import swaggerUi from "swagger-ui-express";
+import swaggerJsdoc from "swagger-jsdoc";
 
 
 const app = express();
+
+
 app.use(express.json());
 app.use(cors());
 app.use(helmet());
+
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  message: "Too many requests, please try again later."
+});
+
+app.use(limiter);
 
 const specs = swaggerJsdoc({
   definition: {
@@ -29,10 +43,9 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
 app.use("/expenses", expenseRoutes);
 app.use("/categories", categoryRoutes);
-app.use("/budgets", budgetRoutes);
+app.use("/budgets", budgetRoutes)
 
-
-app.get("/", (req, res) => {
+app.get("/", (_req, res) => {
   res.send("API Running");
 });
 
