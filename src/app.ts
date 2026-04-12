@@ -27,23 +27,24 @@ const limiter = rateLimit({
 
 app.use(limiter);
 
-const specs = swaggerJsdoc({
+const swaggerspecs = swaggerJsdoc({
   definition: {
-    openapi: "3.0.0",
-    info: {
-      title: "Expense API",
-      version: "1.0.0"
-    }
-  },
+  openapi: "3.0.0",
+  info: {
+    title: "Expense API",
+    version: "1.0.0",
+    description: "Expense Tracker API Documentation"
+  }
+},
   apis: ["./src/routes/*.ts"]
 });
 
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerspecs));
 
 
 app.use("/expenses", expenseRoutes);
 app.use("/categories", categoryRoutes);
-app.use("/budgets", budgetRoutes)
+app.use("/budgets", budgetRoutes);
 
 app.get("/", (_req, res) => {
   res.send("API Running");
