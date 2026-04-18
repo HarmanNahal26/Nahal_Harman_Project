@@ -6,6 +6,10 @@ import rateLimit from "express-rate-limit";
 import expenseRoutes from "./routes/expenseRoutes";
 import categoryRoutes from "./routes/categoryRoutes";
 import budgetRoutes from "./routes/budgetRoutes";
+import adminRoutes from "./routes/adminRoutes";
+import itemRoutes from "./routes/itemRoutes";
+
+
 
 import swaggerUi from "swagger-ui-express";
 import swaggerJsdoc from "swagger-jsdoc";
@@ -45,6 +49,8 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerspecs));
 app.use("/expenses", expenseRoutes);
 app.use("/categories", categoryRoutes);
 app.use("/budgets", budgetRoutes);
+app.use("/api", adminRoutes);
+app.use("/api/items", itemRoutes);
 
 app.get("/", (_req, res) => {
   res.send("API Running");
