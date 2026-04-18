@@ -1,20 +1,20 @@
 import { Router } from "express";
 import {
-  createExpense,
-  getExpenses,
-  getSummary,
-  updateExpense,
-  deleteExpense
-} from "../controllers/expenseController";
+  createBudget,
+  getBudgets,
+  getBudgetById,
+  updateBudget,
+  deleteBudget
+} from "../controllers/budgetController";
 
 const router = Router();
 
 /**
  * @swagger
- * /expenses:
+ * /budgets:
  *   post:
- *     summary: Create a new expense
- *     tags: [Expenses]
+ *     summary: Create a budget
+ *     tags: [Budgets]
  *     requestBody:
  *       required: true
  *       content:
@@ -22,50 +22,54 @@ const router = Router();
  *           schema:
  *             type: object
  *             properties:
- *               amount:
+ *               limit:
  *                 type: number
  *               category:
  *                 type: string
- *               note:
- *                 type: string
- *               date:
- *                 type: string
  *     responses:
  *       201:
- *         description: Expense created
+ *         description: Budget created
  */
-router.post("/", createExpense);
+router.post("/", createBudget);
 
 /**
  * @swagger
- * /expenses:
+ * /budgets:
  *   get:
- *     summary: Get all expenses
- *     tags: [Expenses]
+ *     summary: Get all budgets
+ *     tags: [Budgets]
  *     responses:
  *       200:
- *         description: List of expenses
+ *         description: List of budgets
  */
-router.get("/", getExpenses);
+router.get("/", getBudgets);
 
 /**
  * @swagger
- * /expenses/summary:
+ * /budgets/{id}:
  *   get:
- *     summary: Get expense summary
- *     tags: [Expenses]
+ *     summary: Get budget by ID
+ *     tags: [Budgets]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
  *     responses:
  *       200:
- *         description: Summary data
+ *         description: Budget found
+ *       404:
+ *         description: Budget not found
  */
-router.get("/summary", getSummary);
+router.get("/:id", getBudgetById);
 
 /**
  * @swagger
- * /expenses/{id}:
+ * /budgets/{id}:
  *   put:
- *     summary: Update expense
- *     tags: [Expenses]
+ *     summary: Update budget
+ *     tags: [Budgets]
  *     parameters:
  *       - in: path
  *         name: id
@@ -80,16 +84,16 @@ router.get("/summary", getSummary);
  *             type: object
  *     responses:
  *       200:
- *         description: Updated successfully
+ *         description: Budget updated
  */
-router.put("/:id", updateExpense);
+router.put("/:id", updateBudget);
 
 /**
  * @swagger
- * /expenses/{id}:
+ * /budgets/{id}:
  *   delete:
- *     summary: Delete expense
- *     tags: [Expenses]
+ *     summary: Delete budget
+ *     tags: [Budgets]
  *     parameters:
  *       - in: path
  *         name: id
@@ -98,8 +102,8 @@ router.put("/:id", updateExpense);
  *           type: string
  *     responses:
  *       200:
- *         description: Deleted successfully
+ *         description: Budget deleted
  */
-router.delete("/:id", deleteExpense);
+router.delete("/:id", deleteBudget);
 
 export default router;

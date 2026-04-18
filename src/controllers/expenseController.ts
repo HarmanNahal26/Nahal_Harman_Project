@@ -4,7 +4,10 @@ import * as expenseService from "../services/expenseService";
 
 const schema = Joi.object({
   amount: Joi.number().required(),
-  category: Joi.string().required()
+  category: Joi.string().required(), // ✅ keep this
+  note: Joi.string().optional(),
+  date: Joi.string().optional(),
+  userId: Joi.string().optional()
 });
 
 // CREATE
